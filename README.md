@@ -39,6 +39,17 @@ Nesta pasta você integrou o conteúdo de `2_reconhecimento_de_fala` e montou o 
 
 Observação: o fluxo atual já realiza captura e transcrição em tempo real; falta apenas implementar o mapeamento das transcrições para execução de comandos (ex.: ligar/desligar lâmpada). Você já tem as bases — falta a camada de intenção/ação.
 
+### 4️⃣ Aula 4 — Comandos e execução (diferenças em relação à Aula 3)
+
+Não repete o conteúdo da Aula 3 — abaixo estão apenas as mudanças/adições desta aula:
+
+- Identificação de comandos: o pipeline agora processa transcrições com `processar_transcricao()` (tokenização + remoção de stopwords) e valida pares verbo+dispositivo via `config.json` (`validar_comando()`).
+- Execução de comandos: introduzidos atuadores em `4_comandos/` (`lampada.py`, `som.py`) e a função `atuar(acao, dispositivo, atuadores)` que invoca a ação correta quando um comando é válido.
+- Uso de threads: a execução dos atuadores é feita em background com `threading.Thread` para não bloquear o loop principal (ver `assistente.py` — `Thread(target=..., args=(...)).start()`).
+- Arquivos afetados principais: `4_comandos/assistente.py`, `4_comandos/config.json`, `4_comandos/lampada.py`, `4_comandos/som.py`, `4_comandos/transcritor.py` (resample/transcrição) e `4_comandos/inicializador_modelo.py`.
+
+Nota: grande parte da lógica de captura e transcrição permanece igual à Aula 3; a Aula 4 foca em como transformar a transcrição em ações seguras e não-bloqueantes.
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **Python 3.x**

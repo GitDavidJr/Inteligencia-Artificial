@@ -134,5 +134,4 @@ dmypy.json
 Thumbs.db
 
 # Temporary files
-temp/
 *.tmp
