@@ -11,7 +11,6 @@ import os
 
 from lampada import *
 from som import *
-from api import *
 
 from flask import Flask, Response, request, send_from_directory
 
