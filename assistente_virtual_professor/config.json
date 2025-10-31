@@ -1,0 +1,46 @@
+{
+    "acoes": [
+            {
+                "nome": "ligar",
+                "dispositivos": [
+                    "lâmpada",
+                    "ventilador",
+                    "televisão"
+                ]
+            },
+            {
+                "nome": "desligar",
+                "dispositivos": [
+                    "lâmpada",
+                    "ventilador",
+                    "televisão"
+                ]
+            },
+            {
+                "nome": "acender",
+                "dispositivos": [
+                    "lâmpada"
+                ]
+            },
+            {
+                "nome": "apagar",
+                "dispositivos": [
+                    "lâmpada"
+                ]
+            },
+            {
+                "nome": "tocar",
+                "dispositivos": [
+                    "som",
+                    "música"
+                ]
+            },
+            {
+                "nome": "parar",
+                "dispositivos": [
+                    "som",
+                    "música"
+                ]
+            }
+    ]
+}

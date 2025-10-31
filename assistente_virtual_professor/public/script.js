@@ -1,8 +1,11 @@
 const recordButton = document.getElementById("recordButton");
 const statusDisplay = document.getElementById("status");
 const transcriptionDisplay = document.getElementById("transcription");
-let mediaRecorder;
-let audioChunks = [];
+
+let recorder;
+let audioContext;
+let stream;
+let isRecording = false;
 
 // helper para obter stream do microfone com detecção de compatibilidade
 async function obterStreamMicrofone() {
@@ -26,31 +29,34 @@ async function obterStreamMicrofone() {
 }
 
 recordButton.addEventListener("click", async () => {
-  if (!mediaRecorder || mediaRecorder.state === "inactive") {
-    // Inicia a gravação
-    let stream;
+  if (!isRecording) {
     try {
       stream = await obterStreamMicrofone();
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const source = audioContext.createMediaStreamSource(stream);
+      recorder = new Recorder(source, { numChannels: 1 });
+      recorder.record();
+
+      statusDisplay.textContent = "Gravando...";
+      recordButton.textContent = "Parar Gravação";
+      isRecording = true;
     } catch (err) {
       console.error("Erro ao acessar microfone:", err);
       statusDisplay.textContent = "Erro ao acessar microfone.";
-      return;
     }
-    mediaRecorder = new MediaRecorder(stream);
+  } else {
+    recorder.stop();
+    stream.getTracks().forEach((track) => track.stop());
 
-    mediaRecorder.ondataavailable = (event) => {
-      audioChunks.push(event.data);
-    };
+    statusDisplay.textContent = "Processando...";
+    recordButton.textContent = "Iniciar Gravação";
+    isRecording = false;
 
-    mediaRecorder.onstop = async () => {
-      // Converte os dados de áudio em um Blob e envia para o backend
-      const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+    recorder.exportWAV(async (audioBlob) => {
       const formData = new FormData();
-      formData.append("audio", audioBlob);
+      formData.append("fala", audioBlob, "fala.wav");
 
-      statusDisplay.textContent = "Processando...";
-
-      // Envia o áudio para o backend Flask
+      console.log("dentro do export wave");
       try {
         const response = await fetch("reconhecer_comando", {
           method: "POST",
@@ -59,23 +65,14 @@ recordButton.addEventListener("click", async () => {
 
         const result = await response.json();
         transcriptionDisplay.textContent =
-          result.transcription || "Erro ao processar a transcrição";
+          result.transcricao || "Erro ao processar a transcrição";
       } catch (error) {
         transcriptionDisplay.textContent =
           "Erro na comunicação com o servidor.";
         console.error("Erro:", error);
       }
 
-      audioChunks = [];
       statusDisplay.textContent = "Parado";
-    };
-
-    mediaRecorder.start();
-    statusDisplay.textContent = "Gravando...";
-    recordButton.textContent = "Parar Gravação";
-  } else {
-    // Para a gravação
-    mediaRecorder.stop();
-    recordButton.textContent = "Iniciar Gravação";
+    });
   }
 });
