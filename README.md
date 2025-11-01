@@ -50,6 +50,39 @@ Não repete o conteúdo da Aula 3 — abaixo estão apenas as mudanças/adiçõe
 
 Nota: grande parte da lógica de captura e transcrição permanece igual à Aula 3; a Aula 4 foca em como transformar a transcrição em ações seguras e não-bloqueantes.
 
+### Assistentes auxiliares e versões do trabalho
+
+Além da versão principal em `3_assistente_virtual/`, este repositório contém duas variações/implementações auxiliares do assistente, usadas como provas/trabalhos e para demonstração de atuadores:
+
+- `assistente_virtual_professor/` — implementação usada como primeira prova/trabalho da matéria; contém exemplos de atuadores, áudios de teste e interfaces para hardware (ex.: `lampada/`).
+- `assistente_virtual_infra/` — variação focada em infraestrutura e scripts de suporte (logs, backups, testes automatizados); útil como referência para integração com serviços e atuadores.
+
+Também foi adicionado um diretório de estudos sobre chatbots. Abaixo está uma seção detalhada seguindo o mesmo padrão das seções anteriores.
+
+### 6️⃣ Chatterbots (`6_Chatterbots/`)
+
+Experimentos iniciais com chatbots e agentes conversacionais. Esta pasta reúne código de protótipo para treinar e executar bots simples baseados em regras e exemplos de conversas.
+
+- Propósito:
+
+  - Prototipar e experimentar técnicas simples de chatbot (p. ex. respostas baseadas em template, conjuntos de intenções ou fluxos de diálogo).
+  - Guardar exemplos de conversa usados para testes e para treinar/ajustar modelos leves.
+
+- Arquivos principais:
+
+  - **`robo.py`**: Script do agente/chatbot — implementa a lógica de respostas e interface de execução (modo interativo ou por chamadas de função).
+  - **`treinamento.py`**: Script para gerar/executar rotinas de treinamento (pode preparar dados a partir de `conversas/` e treinar um modelo simples ou pipeline experimental).
+  - **`conversas/saudacoes.json`**: Exemplos de conversas/treinos armazenados em JSON para uso nos testes e no treinamento.
+  - **`requirements.txt`**: Dependências específicas para esta pasta (separadas das dependências globais do projeto).
+
+- Requisito adicional (spaCy):
+
+  - Observação: alguns exemplos/rotinas de NLP experimentais podem usar spaCy. Para rodar localmente esses pipelines, instale o pacote de modelos em inglês com:
+
+    ```powershell
+    python -m spacy download en_core_web_sm
+    ```
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **Python 3.x**
@@ -58,6 +91,11 @@ Nota: grande parte da lógica de captura e transcrição permanece igual à Aula
 - **NLTK** - Processamento de linguagem natural
 - **torchaudio** - Processamento de áudio
 - **Flask** - Framework web (para futuros desenvolvimentos)
+
+Adicionalmente, para os experimentos de chatbots presentes em `6_Chatterbots/`:
+
+- **ChatterBot** - Biblioteca para criação de chatbots e experimentos de diálogo (utilizada nos protótipos em `6_Chatterbots/`).
+- **pytz** - Utilitários de fuso horário; dependência de suporte usada por alguns exemplos e bibliotecas.
 
 ## ⚙️ Configuração do Ambiente
 
