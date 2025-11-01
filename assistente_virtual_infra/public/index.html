@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assistente de Infraestrutura</title>
+    <style>
+      /* Reset básico */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Estilos da página */
+      body {
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #0f1724 0%, #071028 100%);
+        color: #e6eef6;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+        color: #cfe8ff;
+        margin: 0;
+        font-weight: 700;
+      }
+
+      /* Estilos do botão */
+      #recordButton {
+        padding: 12px 22px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #071028;
+        background-color: #9ee37d;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      }
+
+      #recordButton:active {
+        transform: translateY(1px);
+      }
+
+      /* Estilos do status */
+      #status {
+        margin-top: 12px;
+        font-size: 0.95rem;
+        color: #a8c0d9;
+      }
+
+      /* Estilos da transcrição */
+      #card {
+        width: 1000px;
+        max-width: 98%;
+        height: 420px; /* altura menor fixa conforme solicitado */
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+        padding: 22px;
+        box-shadow: 0 12px 40px rgba(2, 6, 23, 0.6);
+        display: grid;
+        grid-template-columns: 1fr 520px; /* aumentar largura da coluna direita para caber logs */
+        gap: 18px;
+        align-items: stretch; /* faz os painéis preencherem a altura do card */
+        align-content: stretch;
+      }
+
+      #leftPanel {
+        padding-right: 6px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      #rightPanel {
+        background: rgba(0, 0, 0, 0.22);
+        border-radius: 8px;
+        padding: 14px;
+        color: #dff3ff;
+        font-size: 0.95rem;
+        display: flex;
+        flex-direction: column;
+        min-height: 0; /* permite que o miniLog faça scroll corretamente */
+      }
+
+      #transcription {
+        margin-top: 12px;
+        padding: 16px;
+        background: rgba(2, 6, 23, 0.6);
+        border-radius: 8px;
+        color: #dff3ff;
+        font-family: Consolas, "Roboto Mono", monospace;
+        font-size: 0.98rem;
+        /* permitir que a transcrição preencha o espaço disponível no leftPanel */
+        flex: 1;
+        overflow: auto;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="card">
+      <section id="leftPanel">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <div>
+            <h1 id="assistantName">Assistente de Infraestrutura</h1>
+            <div id="status" style="margin-top: 6px; color: #9fb6d6">
+              Pronto
+            </div>
+          </div>
+          <div>
+            <button id="recordButton">Iniciar Gravação</button>
+          </div>
+        </div>
+
+        <div id="transcription">O comando aparecerá aqui</div>
+      </section>
+
+      <aside id="rightPanel">
+        <!-- modelStatus and actuators removed (UI simplified for infra-only assistant) -->
+        <div
+          style="
+            margin-top: 14px;
+            font-family: Consolas, 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            color: #cfe8ff;
+            opacity: 0.9;
+          "
+        >
+          Logs recentes:
+        </div>
+        <div
+          id="miniLog"
+          style="
+            margin-top: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 8px;
+            border-radius: 6px;
+            color: #d3efff;
+            font-family: Consolas, 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            overflow: auto;
+            white-space: pre;
+            flex: 1;
+            height: 100%;
+          "
+        ></div>
+      </aside>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recorderjs/0.1.0/recorder.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

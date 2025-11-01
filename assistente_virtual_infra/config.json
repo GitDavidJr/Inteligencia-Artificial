@@ -1,0 +1,24 @@
+{
+  "acoes": [
+    {
+      "nome": "verificar",
+      "dispositivos": ["web", "servidor"]
+    },
+    {
+      "nome": "reiniciar",
+      "dispositivos": ["banco", "servico"]
+    },
+    {
+      "nome": "backup",
+      "dispositivos": ["main", "aplicacao", "app"]
+    },
+    {
+      "nome": "analisar",
+      "dispositivos": ["logs", "log"]
+    },
+    {
+      "nome": "consultar",
+      "dispositivos": ["cpu", "cpg", "memoria", "memória", "uso"]
+    }
+  ]
+}
