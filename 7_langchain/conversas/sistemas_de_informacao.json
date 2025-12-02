@@ -1,0 +1,16 @@
+{
+    "conversas": [
+        {
+            "mensagens": [ "o que é o curso?", "como é o curso?" ],
+            "resposta": "O curso serve para formar profissionais capazes de administrar o fluxo de informações geradas e distribuídas por redes de computadores dentro e fora de uma organização"
+        },
+        {
+            "mensagens": [ "quanto tempo dura o curso?", "quanto tempo o curso dura" ],
+            "resposta": "O curso dura 4 anos ou 8 semestres"
+        },
+        {
+            "mensagens": [ "em que áreas posso atuar?", "como é a profissão?", "o que eu posso fazer depois do curso?" ],
+            "resposta": "No mercado de trabalho o profissional de Sistemas de Informação pode trabalhar em empresas de tecnologia"
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+mediapipe==0.10.21
+langchain_google_genai
+transformers
+numpy
+protobuf
+langchain-openai
