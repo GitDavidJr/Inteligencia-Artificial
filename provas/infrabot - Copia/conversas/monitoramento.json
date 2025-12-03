@@ -1,0 +1,54 @@
+{
+  "conversas": [
+    {
+      "mensagens": [
+        "como está o uso da cpu?",
+        "qual a carga da cpu?",
+        "cpu status",
+        "status cpu",
+        "uso da cpu",
+        "processador status"
+      ],
+      "resposta": "A CPU está operando com 45% de carga. Tudo normal."
+    },
+    {
+      "mensagens": [
+        "quanto de memória ram está livre?",
+        "memória disponível",
+        "status da memória",
+        "status memoria",
+        "uso de memoria",
+        "ram status"
+      ],
+      "resposta": "Temos 8GB de memória RAM livre de um total de 16GB."
+    },
+    {
+      "mensagens": [
+        "qual o espaço em disco?",
+        "disco cheio?",
+        "armazenamento disponível",
+        "qual espaço do disco?",
+        "o disco esta cheio?",
+        "status disco",
+        "hd status"
+      ],
+      "resposta": "O disco principal tem 500GB livres. O disco de backup tem 1TB livre."
+    },
+    {
+      "mensagens": [
+        "o servidor está online?",
+        "status do servidor",
+        "uptime do servidor"
+      ],
+      "resposta": "O servidor está online há 15 dias sem interrupções."
+    },
+    {
+      "mensagens": [
+        "qual a temperatura do servidor?",
+        "temperatura cpu",
+        "aquecimento do servidor"
+      ],
+      "resposta": "A temperatura atual da CPU é de 55°C, dentro dos limites operacionais."
+    }
+  ]
+}

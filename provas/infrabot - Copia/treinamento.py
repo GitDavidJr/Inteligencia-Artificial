@@ -5,11 +5,11 @@ import json
 
 CONVERSAS = [
     "conversas/saudacoes.json",
-    "conversas/informacoes_basicas.json",
-    "conversas/sistemas_de_informacao.json"
+    "conversas/monitoramento.json",
+    "conversas/comandos.json"
 ]
 
-NOME_ROBO = "IFBABot"
+NOME_ROBO = "InfraBot"
 
 def configurar_treinador():
     robo = ChatBot(NOME_ROBO)

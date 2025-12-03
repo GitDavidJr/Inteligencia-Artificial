@@ -1,0 +1,52 @@
+{
+  "conversas": [
+    {
+      "mensagens": [
+        "reinicie o servidor nginx",
+        "restart nginx",
+        "reiniciar serviço web"
+      ],
+      "resposta": "Comando enviado: 'systemctl restart nginx'. O serviço foi reiniciado com sucesso."
+    },
+    {
+      "mensagens": [
+        "listar processos ativos",
+        "quais processos estão rodando?",
+        "top processos"
+      ],
+      "resposta": "Listando processos... (simulação):<br>1. python (15%)<br>2. nginx (5%)<br>3. mysqld (2%)"
+    },
+    {
+      "mensagens": [
+        "fazer backup do banco de dados",
+        "iniciar backup",
+        "backup database"
+      ],
+      "resposta": "Iniciando backup do banco de dados... Backup concluído em /var/backups/db_2023.sql."
+    },
+    {
+      "mensagens": [
+        "atualizar o sistema",
+        "update system",
+        "rodar apt-get update"
+      ],
+      "resposta": "Verificando atualizações... 5 pacotes podem ser atualizados. Use 'upgrade' para aplicar."
+    },
+    {
+      "mensagens": [
+        "upgrade",
+        "aplicar atualizações",
+        "instalar updates"
+      ],
+      "resposta": "Iniciando atualização do sistema...<br>Baixando pacotes...<br>Instalando...<br>Sistema atualizado com sucesso!"
+    },
+    {
+      "mensagens": [
+        "verificar logs de erro",
+        "mostrar logs",
+        "logs do sistema"
+      ],
+      "resposta": "Exibindo as últimas 10 linhas do log de erro: [ERROR] Connection timed out..."
+    }
+  ]
+}

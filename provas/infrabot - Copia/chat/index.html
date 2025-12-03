@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfraBot - Assistente de Infraestrutura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #3b82f6;
+            --bg-color: #f1f5f9;
+            --chat-bg: #ffffff;
+            --user-msg-bg: #3b82f6;
+            --bot-msg-bg: #e2e8f0;
+            --text-color: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .chat-container {
+            width: 450px;
+            height: 600px;
+            background-color: var(--chat-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .chat-header i {
+            color: var(--accent-color);
+        }
+
+        #messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background-color: var(--user-msg-bg);
+            color: #fff;
+            border-bottom-right-radius: 2px;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background-color: var(--bot-msg-bg);
+            color: var(--text-color);
+            border-bottom-left-radius: 2px;
+        }
+
+        form {
+            padding: 20px;
+            background-color: #fff;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--accent-color);
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <i class="fas fa-server"></i> InfraBot
+        </div>
+        <ul id="messages">
+            <!-- Mensagens vão aqui -->
+        </ul>
+        <div id="start-message" style="text-align: center; color: #64748b; margin-top: 50%; transform: translateY(-50%);">
+            Envie a primeira mensagem para iniciar a conversa com o InfraBot.
+        </div>
+        <form action="">
+            <input id="m" autocomplete="off" placeholder="Digite um comando..." />
+            <button><i class="fas fa-paper-plane"></i></button>
+        </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            var socket = io();
+            $('form').submit(function(){
+                var msg = $('#m').val();
+                if(msg.trim() === "") return false;
+                
+                $('#start-message').hide(); // Esconde a mensagem inicial
+                $('#messages').append($('<li>').addClass('message user').text(msg));
+                socket.emit('chat message', msg);
+                $('#m').val('');
+                
+                var messagesContainer = document.getElementById('messages');
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                return false;
+            });
+            socket.on('chat message', function(msg){
+                $('#messages').append($('<li>').addClass('message bot').html(msg));
+                var messagesContainer = document.getElementById('messages');
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            });
+        });
+    </script>
+</body>
+</html>
