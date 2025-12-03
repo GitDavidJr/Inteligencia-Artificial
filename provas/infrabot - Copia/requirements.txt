@@ -1,3 +1,0 @@
-chatterbot
-flask
-pytz
